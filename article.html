@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artículo Detallado</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header con menú de navegación -->
+  <header>
+    <div class="logo">
+      <h1>Mi Página Web</h1>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Noticias</a></li>
+        <li><a href="#">Deportes</a></li>
+        <li><a href="#">Cultura</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Título principal -->
+  <h1>Detalles del Artículo</h1>
+
+  <!-- Contenedor para el artículo -->
+  <div class="article-container">
+    <div class="article-content"></div>
+  </div>
+
+  <!-- Enlace al JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const articleId = urlParams.get('id');
+
+      if (!articleId) {
+        document.querySelector('.article-content').innerHTML = `<p>Artículo no encontrado.</p>`;
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://news-foniuhqsba-uc.a.run.app/${articleId}`);
+        const article = await response.json();
+        
+        if (response.ok) {
+          document.querySelector('.article-content').innerHTML = `
+            <h2>${article.headline}</h2>
+            <p><strong>Autor:</strong> ${article.author}</p>
+            <p>${article.body}</p>
+          `;
+        } else {
+          document.querySelector('.article-content').innerHTML = `<p>Artículo no disponible.</p>`;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        document.querySelector('.article-content').innerHTML = `<p>Error al cargar el artículo.</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

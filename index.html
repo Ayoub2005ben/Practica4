@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor de Noticias</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Mi Página Web</h1>
+    <nav>
+      <ul>
+        <li><a href="#" data-section="WorldNews">Mundo</a></li>
+        <li><a href="#" data-section="Sport">Deportes</a></li>
+        <li><a href="#" data-section="Finance">Finanzas</a></li>
+        <li><a href="#" data-section="Technology">Tecnología</a></li>
+        <li><a href="#" data-section="Entertainment">Entretenimiento</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h2>Artículos de Noticias</h2>
+
+  <!-- Contenedor de noticias -->
+  <div class="news-container">
+    <news-viewer></news-viewer>
+  </div>
+
+  <template id="article-template">
+    <div class="news-card">
+      <h3 class="title"></h3>
+      <p><strong>Autor:</strong> <span class="author"></span></p>
+      <p class="description"></p>
+      <a href="article.html?id=" class="read-more">Leer más...</a>
+    </div>
+  </template>
+
+  <script src="news-viewer.js"></script>
+</body>
+</html>
